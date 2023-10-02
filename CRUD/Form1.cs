@@ -66,6 +66,7 @@ namespace CRUD
                 LISTA.Items.Add(VisualizzaStringa(p[i]));
             }
             */
+
         }
         
         private void UPDATE_Click(object sender, EventArgs e)
