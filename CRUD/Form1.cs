@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -136,6 +137,21 @@ namespace CRUD
             OrdinamentoAlfabetico();
             AggiornaLista();
         }
+        private void Somma_Click(object sender, EventArgs e)
+        {
+            float somma = SommaPrezzi(p);
+            MessageBox.Show($"La somma di tutti i prodottti è {SommaPrezzi(p)}");
+        }
+
+        private void PrezzoMin_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show($"Il prezzo minimo è {TrovaMinimo(p)}");
+        }
+
+        private void PrezzoMassimo_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show($"Il prezzo massimo è {TrovaMassimo(p)}");
+        }
 
         //FUNZIONI DI SERVIZIO 
         public void AggiornaLista()
@@ -185,10 +201,30 @@ namespace CRUD
             return somma;
         }
 
-        private void Somma_Click(object sender, EventArgs e)
+        public float TrovaMinimo(Prodotto[] p)
         {
-            float somma = SommaPrezzi(p);
-            MessageBox.Show($"La somma di tutti i prodottti è {SommaPrezzi(p)}");
+            float minimo = 100;
+            for (int i = 0; i < dim; i++)
+            {
+                if (p[i].prezzo < minimo)
+                {
+                    minimo = p[i].prezzo;
+                }
+            }
+            return minimo;
         }
+        public float TrovaMassimo(Prodotto[] p)
+        {
+            float massimo = 0;
+            for (int i = 0; i < dim; i++)
+            {
+                if (p[i].prezzo > massimo)
+                {
+                    massimo = p[i].prezzo;
+                }
+            }
+            return massimo;
+        }
+
     }
 }

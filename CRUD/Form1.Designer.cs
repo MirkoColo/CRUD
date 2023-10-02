@@ -41,6 +41,8 @@
             this.USCITA = new System.Windows.Forms.Button();
             this.ORDINAMENTO = new System.Windows.Forms.Button();
             this.Somma = new System.Windows.Forms.Button();
+            this.PrezzoMin = new System.Windows.Forms.Button();
+            this.PrezzoMassimo = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // CREATE
@@ -177,11 +179,35 @@
             this.Somma.UseVisualStyleBackColor = true;
             this.Somma.Click += new System.EventHandler(this.Somma_Click);
             // 
+            // PrezzoMin
+            // 
+            this.PrezzoMin.Location = new System.Drawing.Point(804, 230);
+            this.PrezzoMin.Margin = new System.Windows.Forms.Padding(2);
+            this.PrezzoMin.Name = "PrezzoMin";
+            this.PrezzoMin.Size = new System.Drawing.Size(142, 50);
+            this.PrezzoMin.TabIndex = 15;
+            this.PrezzoMin.Text = "Prezzo Minimo";
+            this.PrezzoMin.UseVisualStyleBackColor = true;
+            this.PrezzoMin.Click += new System.EventHandler(this.PrezzoMin_Click);
+            // 
+            // PrezzoMassimo
+            // 
+            this.PrezzoMassimo.Location = new System.Drawing.Point(804, 296);
+            this.PrezzoMassimo.Margin = new System.Windows.Forms.Padding(2);
+            this.PrezzoMassimo.Name = "PrezzoMassimo";
+            this.PrezzoMassimo.Size = new System.Drawing.Size(142, 50);
+            this.PrezzoMassimo.TabIndex = 16;
+            this.PrezzoMassimo.Text = "Prezzo Massimo";
+            this.PrezzoMassimo.UseVisualStyleBackColor = true;
+            this.PrezzoMassimo.Click += new System.EventHandler(this.PrezzoMassimo_Click);
+            // 
             // CRUD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1028, 569);
+            this.Controls.Add(this.PrezzoMassimo);
+            this.Controls.Add(this.PrezzoMin);
             this.Controls.Add(this.Somma);
             this.Controls.Add(this.ORDINAMENTO);
             this.Controls.Add(this.USCITA);
@@ -218,6 +244,8 @@
         private System.Windows.Forms.Button USCITA;
         private System.Windows.Forms.Button ORDINAMENTO;
         private System.Windows.Forms.Button Somma;
+        private System.Windows.Forms.Button PrezzoMin;
+        private System.Windows.Forms.Button PrezzoMassimo;
     }
 }
 
