@@ -150,7 +150,7 @@ namespace CRUD
 
         private void PrezzoMassimo_Click(object sender, EventArgs e)
         {
-            MessageBox.Show($"Il prezzo massimo è {TrovaMassimo(p)}");
+            
         }
 
         //FUNZIONI DI SERVIZIO 
