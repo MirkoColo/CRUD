@@ -66,14 +66,12 @@ namespace CRUD
                 LISTA.Items.Add(VisualizzaStringa(p[i]));
             }
             */
-
         }
         
         private void UPDATE_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Selezionare il prodotto da cancellare e poi Inserire il nome e il prezzo del nuovo prodotto");
             ConfermaUpdate.Visible = true;
-
         }
 
         private void CRUD_Load(object sender, EventArgs e)
@@ -93,10 +91,25 @@ namespace CRUD
         private void ConfermaUpdate_Click(object sender, EventArgs e)
         {
             int indiceLista = LISTA.SelectedIndex;
-            p[indiceLista].nome = NOME.Text;
-            p[indiceLista].prezzo = float.Parse(PREZZO.Text);
-            AggiornaLista();
-            ConfermaUpdate.Visible = false;
+            if(NOME.Text == " " && PREZZO.Text == " ")
+            {
+                MessageBox.Show("Inserire il nome e il prezzo del nuovo prodotto");
+            }
+            else if(NOME.Text == " ")
+            {
+                MessageBox.Show("Inserire il prezzo del nuovo prodotto");
+            }
+            else if (PREZZO.Text == " ")
+            {
+                MessageBox.Show("Inserire il nome del nuovo prodotto");
+            }
+            else
+            {
+                p[indiceLista].nome = NOME.Text;
+                p[indiceLista].prezzo = float.Parse(PREZZO.Text);
+                AggiornaLista();
+                ConfermaUpdate.Visible = false;
+            }      
         }
 
         private void ConfermaDelete_Click(object sender, EventArgs e)
@@ -161,6 +174,21 @@ namespace CRUD
 
         }
 
-        
+        public float SommaPrezzi(Prodotto[] p)
+        {
+            float somma = 0;
+
+            for(int i = 0; i < dim; i++)
+            {
+                somma += p[i].prezzo;
+            }
+            return somma;
+        }
+
+        private void Somma_Click(object sender, EventArgs e)
+        {
+            float somma = SommaPrezzi(p);
+            MessageBox.Show($"La somma di tutti i prodottti è {SommaPrezzi(p)}");
+        }
     }
 }
