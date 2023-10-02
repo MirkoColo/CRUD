@@ -31,17 +31,20 @@
             this.CREATE = new System.Windows.Forms.Button();
             this.DELETE = new System.Windows.Forms.Button();
             this.UPDATE = new System.Windows.Forms.Button();
-            this.READ = new System.Windows.Forms.Button();
             this.NOME = new System.Windows.Forms.TextBox();
             this.PREZZO = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.LISTA = new System.Windows.Forms.ListBox();
+            this.ConfermaUpdate = new System.Windows.Forms.Button();
+            this.ConfermaDelete = new System.Windows.Forms.Button();
+            this.USCITA = new System.Windows.Forms.Button();
+            this.ORDINAMENTO = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // CREATE
             // 
-            this.CREATE.Location = new System.Drawing.Point(379, 94);
+            this.CREATE.Location = new System.Drawing.Point(379, 172);
             this.CREATE.Name = "CREATE";
             this.CREATE.Size = new System.Drawing.Size(190, 61);
             this.CREATE.TabIndex = 1;
@@ -68,16 +71,6 @@
             this.UPDATE.Text = "Update(Modifica)";
             this.UPDATE.UseVisualStyleBackColor = true;
             this.UPDATE.Click += new System.EventHandler(this.UPDATE_Click);
-            // 
-            // READ
-            // 
-            this.READ.Location = new System.Drawing.Point(379, 194);
-            this.READ.Name = "READ";
-            this.READ.Size = new System.Drawing.Size(190, 61);
-            this.READ.TabIndex = 4;
-            this.READ.Text = "Read(Visualizza)";
-            this.READ.UseVisualStyleBackColor = true;
-            this.READ.Click += new System.EventHandler(this.READ_Click);
             // 
             // NOME
             // 
@@ -115,22 +108,66 @@
             // 
             this.LISTA.FormattingEnabled = true;
             this.LISTA.ItemHeight = 16;
-            this.LISTA.Location = new System.Drawing.Point(721, 73);
+            this.LISTA.Location = new System.Drawing.Point(616, 108);
             this.LISTA.Name = "LISTA";
             this.LISTA.Size = new System.Drawing.Size(416, 452);
             this.LISTA.TabIndex = 9;
+            this.LISTA.SelectedIndexChanged += new System.EventHandler(this.LISTA_SelectedIndexChanged);
+            // 
+            // ConfermaUpdate
+            // 
+            this.ConfermaUpdate.Location = new System.Drawing.Point(120, 296);
+            this.ConfermaUpdate.Name = "ConfermaUpdate";
+            this.ConfermaUpdate.Size = new System.Drawing.Size(190, 61);
+            this.ConfermaUpdate.TabIndex = 10;
+            this.ConfermaUpdate.Text = "Conferma Update";
+            this.ConfermaUpdate.UseVisualStyleBackColor = true;
+            this.ConfermaUpdate.Click += new System.EventHandler(this.ConfermaUpdate_Click);
+            // 
+            // ConfermaDelete
+            // 
+            this.ConfermaDelete.Location = new System.Drawing.Point(120, 400);
+            this.ConfermaDelete.Name = "ConfermaDelete";
+            this.ConfermaDelete.Size = new System.Drawing.Size(190, 61);
+            this.ConfermaDelete.TabIndex = 11;
+            this.ConfermaDelete.Text = "Conferma Delete";
+            this.ConfermaDelete.UseVisualStyleBackColor = true;
+            this.ConfermaDelete.Click += new System.EventHandler(this.ConfermaDelete_Click);
+            // 
+            // USCITA
+            // 
+            this.USCITA.Location = new System.Drawing.Point(379, 532);
+            this.USCITA.Name = "USCITA";
+            this.USCITA.Size = new System.Drawing.Size(190, 61);
+            this.USCITA.TabIndex = 12;
+            this.USCITA.Text = "ESCI";
+            this.USCITA.UseVisualStyleBackColor = true;
+            this.USCITA.Click += new System.EventHandler(this.USCITA_Click);
+            // 
+            // ORDINAMENTO
+            // 
+            this.ORDINAMENTO.Location = new System.Drawing.Point(1072, 108);
+            this.ORDINAMENTO.Name = "ORDINAMENTO";
+            this.ORDINAMENTO.Size = new System.Drawing.Size(190, 61);
+            this.ORDINAMENTO.TabIndex = 13;
+            this.ORDINAMENTO.Text = "Ordinamento Alfabetico";
+            this.ORDINAMENTO.UseVisualStyleBackColor = true;
+            this.ORDINAMENTO.Click += new System.EventHandler(this.ORDINAMENTO_Click);
             // 
             // CRUD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1370, 700);
+            this.Controls.Add(this.ORDINAMENTO);
+            this.Controls.Add(this.USCITA);
+            this.Controls.Add(this.ConfermaDelete);
+            this.Controls.Add(this.ConfermaUpdate);
             this.Controls.Add(this.LISTA);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.PREZZO);
             this.Controls.Add(this.NOME);
-            this.Controls.Add(this.READ);
             this.Controls.Add(this.UPDATE);
             this.Controls.Add(this.DELETE);
             this.Controls.Add(this.CREATE);
@@ -146,12 +183,15 @@
         private System.Windows.Forms.Button CREATE;
         private System.Windows.Forms.Button DELETE;
         private System.Windows.Forms.Button UPDATE;
-        private System.Windows.Forms.Button READ;
         private System.Windows.Forms.TextBox NOME;
         private System.Windows.Forms.TextBox PREZZO;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListBox LISTA;
+        private System.Windows.Forms.Button ConfermaUpdate;
+        private System.Windows.Forms.Button ConfermaDelete;
+        private System.Windows.Forms.Button USCITA;
+        private System.Windows.Forms.Button ORDINAMENTO;
     }
 }
 

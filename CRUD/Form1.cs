@@ -18,17 +18,20 @@ namespace CRUD
             public float prezzo;
         }
         public Prodotto[] p;
+        //ciao
 
         public int dim;
         public CRUD()
         {
             InitializeComponent();
-            p = new Prodotto[100];
+            p = new Prodotto[0];
             dim = 0;
 
             LISTA.Visible = false;
             UPDATE.Visible = false;
             DELETE.Visible = false;
+            ConfermaDelete.Visible = false;
+            ConfermaUpdate.Visible = false;
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -38,27 +41,38 @@ namespace CRUD
 
         private void CREATE_Click(object sender, EventArgs e)
         {
+            Array.Resize(ref p, p.Length + 1);
             p[dim].nome = NOME.Text;
             p[dim].prezzo = float.Parse(PREZZO.Text);
             dim++;
-            MessageBox.Show($"Il prodotto {NOME.Text} al prezzo di {PREZZO.Text} euro è stato aggiunto al carrello");
+            //MessageBox.Show($"Il prodotto {NOME.Text} al prezzo di {PREZZO.Text} euro è stato aggiunto al carrello");
             NOME.Text = "";
             PREZZO.Text = "";
+            AggiornaLista();
+            LISTA.Visible = true;
+            UPDATE.Visible = true;
+            DELETE.Visible = true;
         }
 
+        
         private void READ_Click(object sender, EventArgs e)
         {
+            /*
             LISTA.Visible = true;
+            UPDATE.Visible = true;
+            DELETE.Visible = true;
             LISTA.Items.Clear();
             for(int i = 0; i < dim; i++)
             {
                 LISTA.Items.Add(VisualizzaStringa(p[i]));
             }
+            */
         }
-
+        
         private void UPDATE_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("Selezionare il prodotto da cancellare e poi Inserire il nome e il prezzo del nuovo prodotto");
+            ConfermaUpdate.Visible = true;
         }
 
         private void CRUD_Load(object sender, EventArgs e)
@@ -66,16 +80,86 @@ namespace CRUD
 
         }
 
+        private void LISTA_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
         private void DELETE_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Selezionare il prodotto da cancellare");
+            ConfermaDelete.Visible = true;
+        }
+        private void ConfermaUpdate_Click(object sender, EventArgs e)
+        {
+            int indiceLista = LISTA.SelectedIndex;
+            p[indiceLista].nome = NOME.Text;
+            p[indiceLista].prezzo = float.Parse(PREZZO.Text);
+            AggiornaLista();
+            ConfermaUpdate.Visible = false;
+        }
 
+        private void ConfermaDelete_Click(object sender, EventArgs e)
+        {
+            for (int i = LISTA.SelectedIndex; i < p.Length - 1; i++)
+            {
+                p[i].nome = p[i + 1].nome;
+                p[i].prezzo = p[i + 1].prezzo;
+            }      
+            Array.Resize(ref p, p.Length - 1);
+            dim--;
+            AggiornaLista();
+            ConfermaDelete.Visible = false;
+            if(p.Length == 0)
+            {
+                LISTA.Visible = false;
+                UPDATE.Visible = false;
+                DELETE.Visible = false;
+            }
+        }
+
+        private void ORDINAMENTO_Click(object sender, EventArgs e)
+        {
+            OrdinamentoAlfabetico();
+            AggiornaLista();
         }
 
         //FUNZIONI DI SERVIZIO 
+        public void AggiornaLista()
+        {
+            LISTA.Items.Clear();
+            for (int i = 0; i < dim; i++)
+            {
+                LISTA.Items.Add($"{p[i].nome} - {p[i].prezzo}euro");
+            }
+        }
 
         public string VisualizzaStringa(Prodotto p)
         {
             return $"{p.nome} - {p.prezzo}euro";
         }
+
+        private void USCITA_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        public void OrdinamentoAlfabetico()
+        {
+            for(int i = 0; i < p.Length - 1; i++)
+            {
+                for(int j = i  +1; j < p.Length; j++)
+                {
+                    if (p[i].nome.CompareTo(p[j].nome) > 0)
+                    {
+                        string a = p[i].nome;
+                        p[i].nome = p[j].nome;
+                        p[j].nome = a;
+                    }
+                }
+            }
+
+        }
+
+        
     }
 }
