@@ -18,7 +18,6 @@ namespace CRUD
             public float prezzo;
         }
         public Prodotto[] p;
-        //ciao
 
         public int dim;
         public CRUD()
