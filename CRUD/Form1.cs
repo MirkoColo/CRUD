@@ -16,7 +16,7 @@ namespace CRUD
         {
             public string nome;
             public float prezzo;
-        }
+        }   
         public Prodotto[] p;
 
         public int dim;
@@ -72,6 +72,7 @@ namespace CRUD
         {
             MessageBox.Show("Selezionare il prodotto da cancellare e poi Inserire il nome e il prezzo del nuovo prodotto");
             ConfermaUpdate.Visible = true;
+
         }
 
         private void CRUD_Load(object sender, EventArgs e)
