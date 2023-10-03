@@ -176,10 +176,16 @@ namespace CRUD
             SalvaSuFile();
         }
 
+        private void Leggi_Click(object sender, EventArgs e)
+        {
+            LeggiDaFile();
+        }
+
         private void USCITA_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
+
 
         //FUNZIONI DI SERVIZIO 
         public void AggiornaLista()
@@ -258,7 +264,9 @@ namespace CRUD
             sw.Close();
         }
 
-        private void Leggi_Click(object sender, EventArgs e)
+        
+
+        public void LeggiDaFile()
         {
             LISTA.Items.Clear();
             StreamReader sr = new StreamReader(@"LeggiLista.txt");
@@ -270,7 +278,6 @@ namespace CRUD
             }
             sr.Close();
             LISTA.Visible = true;
-
         }
     }
 }
