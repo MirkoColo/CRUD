@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
@@ -32,6 +33,12 @@ namespace CRUD
             DELETE.Visible = false;
             ConfermaDelete.Visible = false;
             ConfermaUpdate.Visible = false;
+            Ordinamento.Visible = false;
+            Somma.Visible = false;
+            PrezzoMin.Visible = false;
+            PrezzoMassimo.Visible = false;
+            Salva.Visible = false;
+            
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -52,6 +59,11 @@ namespace CRUD
             LISTA.Visible = true;
             UPDATE.Visible = true;
             DELETE.Visible = true;
+            Ordinamento.Visible = true;
+            Somma.Visible = true;
+            PrezzoMin.Visible = true;
+            PrezzoMassimo.Visible = true;
+            Salva.Visible = true;
         }
 
         
@@ -88,24 +100,30 @@ namespace CRUD
         {
             MessageBox.Show("Selezionare il prodotto da cancellare");
             ConfermaDelete.Visible = true;
+            Ordinamento.Visible = false;
+            Somma.Visible = false;
+            PrezzoMin.Visible = false;
+            PrezzoMassimo.Visible = false;
+            Salva.Visible = false;
         }
         private void ConfermaUpdate_Click(object sender, EventArgs e)
         {
-            int indiceLista = LISTA.SelectedIndex;
-            if(NOME.Text == " " && PREZZO.Text == " ")
+            
+            if(NOME.Text == "" && PREZZO.Text == "")
             {
                 MessageBox.Show("Inserire il nome e il prezzo del nuovo prodotto");
             }
-            else if(NOME.Text == " ")
+            else if(NOME.Text == "")
             {
                 MessageBox.Show("Inserire il prezzo del nuovo prodotto");
             }
-            else if (PREZZO.Text == " ")
+            else if (PREZZO.Text == "")
             {
                 MessageBox.Show("Inserire il nome del nuovo prodotto");
             }
             else
             {
+                int indiceLista = LISTA.SelectedIndex;
                 p[indiceLista].nome = NOME.Text;
                 p[indiceLista].prezzo = float.Parse(PREZZO.Text);
                 AggiornaLista();
@@ -153,19 +171,9 @@ namespace CRUD
             MessageBox.Show($"Il prezzo massimo è {TrovaMassimo(p)}");
         }
 
-        //FUNZIONI DI SERVIZIO 
-        public void AggiornaLista()
+        private void Salva_Click(object sender, EventArgs e)
         {
-            LISTA.Items.Clear();
-            for (int i = 0; i < dim; i++)
-            {
-                LISTA.Items.Add($"{p[i].nome} - {p[i].prezzo}euro");
-            }
-        }
-
-        public string VisualizzaStringa(Prodotto p)
-        {
-            return $"{p.nome} - {p.prezzo}euro";
+            SalvaSuFile();
         }
 
         private void USCITA_Click(object sender, EventArgs e)
@@ -173,11 +181,26 @@ namespace CRUD
             Application.Exit();
         }
 
+        //FUNZIONI DI SERVIZIO 
+        public void AggiornaLista()
+        {
+            LISTA.Items.Clear();
+            for (int i = 0; i < dim; i++)
+            {
+                LISTA.Items.Add($"{p[i].nome};{p[i].prezzo}euro");
+            }
+        }
+
+        public string VisualizzaStringa(Prodotto p)
+        {
+            return $"{p.nome};{p.prezzo}euro";
+        }
+
         public void OrdinamentoAlfabetico()
         {
             for(int i = 0; i < p.Length - 1; i++)
             {
-                for(int j = i  +1; j < p.Length; j++)
+                for(int j = i + 1; j < p.Length; j++)
                 {
                     if (p[i].nome.CompareTo(p[j].nome) > 0)
                     {
@@ -187,7 +210,6 @@ namespace CRUD
                     }
                 }
             }
-
         }
 
         public float SommaPrezzi(Prodotto[] p)
@@ -203,7 +225,7 @@ namespace CRUD
 
         public float TrovaMinimo(Prodotto[] p)
         {
-            float minimo = 100;
+            float minimo = 10000;
             for (int i = 0; i < dim; i++)
             {
                 if (p[i].prezzo < minimo)
@@ -226,5 +248,29 @@ namespace CRUD
             return massimo;
         }
 
+        public void SalvaSuFile()
+        {
+            StreamWriter sw = new StreamWriter("LISTA.txt");
+            for (int i = 0; i < dim; i++)
+            {
+                sw.WriteLine($"{p[i].nome};{p[i].prezzo}");
+            }
+            sw.Close();
+        }
+
+        private void Leggi_Click(object sender, EventArgs e)
+        {
+            LISTA.Items.Clear();
+            StreamReader sr = new StreamReader(@"LeggiLista.txt");
+            string line = sr.ReadLine();
+            while (line != null)
+            {
+                LISTA.Items.Add($"{line}euro");
+                line = sr.ReadLine();
+            }
+            sr.Close();
+            LISTA.Visible = true;
+
+        }
     }
 }

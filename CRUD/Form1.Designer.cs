@@ -39,16 +39,18 @@
             this.ConfermaUpdate = new System.Windows.Forms.Button();
             this.ConfermaDelete = new System.Windows.Forms.Button();
             this.USCITA = new System.Windows.Forms.Button();
-            this.ORDINAMENTO = new System.Windows.Forms.Button();
+            this.Ordinamento = new System.Windows.Forms.Button();
             this.Somma = new System.Windows.Forms.Button();
             this.PrezzoMin = new System.Windows.Forms.Button();
             this.PrezzoMassimo = new System.Windows.Forms.Button();
+            this.Salva = new System.Windows.Forms.Button();
+            this.Leggi = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // CREATE
             // 
             this.CREATE.Location = new System.Drawing.Point(284, 140);
-            this.CREATE.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CREATE.Margin = new System.Windows.Forms.Padding(2);
             this.CREATE.Name = "CREATE";
             this.CREATE.Size = new System.Drawing.Size(142, 50);
             this.CREATE.TabIndex = 1;
@@ -59,7 +61,7 @@
             // DELETE
             // 
             this.DELETE.Location = new System.Drawing.Point(284, 325);
-            this.DELETE.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DELETE.Margin = new System.Windows.Forms.Padding(2);
             this.DELETE.Name = "DELETE";
             this.DELETE.Size = new System.Drawing.Size(142, 50);
             this.DELETE.TabIndex = 2;
@@ -70,7 +72,7 @@
             // UPDATE
             // 
             this.UPDATE.Location = new System.Drawing.Point(284, 240);
-            this.UPDATE.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.UPDATE.Margin = new System.Windows.Forms.Padding(2);
             this.UPDATE.Name = "UPDATE";
             this.UPDATE.Size = new System.Drawing.Size(142, 50);
             this.UPDATE.TabIndex = 3;
@@ -81,7 +83,7 @@
             // NOME
             // 
             this.NOME.Location = new System.Drawing.Point(88, 128);
-            this.NOME.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.NOME.Margin = new System.Windows.Forms.Padding(2);
             this.NOME.Name = "NOME";
             this.NOME.Size = new System.Drawing.Size(146, 20);
             this.NOME.TabIndex = 5;
@@ -89,7 +91,7 @@
             // PREZZO
             // 
             this.PREZZO.Location = new System.Drawing.Point(88, 189);
-            this.PREZZO.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PREZZO.Margin = new System.Windows.Forms.Padding(2);
             this.PREZZO.Name = "PREZZO";
             this.PREZZO.Size = new System.Drawing.Size(146, 20);
             this.PREZZO.TabIndex = 6;
@@ -118,7 +120,7 @@
             // 
             this.LISTA.FormattingEnabled = true;
             this.LISTA.Location = new System.Drawing.Point(462, 88);
-            this.LISTA.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.LISTA.Margin = new System.Windows.Forms.Padding(2);
             this.LISTA.Name = "LISTA";
             this.LISTA.Size = new System.Drawing.Size(313, 368);
             this.LISTA.TabIndex = 9;
@@ -127,7 +129,7 @@
             // ConfermaUpdate
             // 
             this.ConfermaUpdate.Location = new System.Drawing.Point(90, 240);
-            this.ConfermaUpdate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ConfermaUpdate.Margin = new System.Windows.Forms.Padding(2);
             this.ConfermaUpdate.Name = "ConfermaUpdate";
             this.ConfermaUpdate.Size = new System.Drawing.Size(142, 50);
             this.ConfermaUpdate.TabIndex = 10;
@@ -138,7 +140,7 @@
             // ConfermaDelete
             // 
             this.ConfermaDelete.Location = new System.Drawing.Point(90, 325);
-            this.ConfermaDelete.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ConfermaDelete.Margin = new System.Windows.Forms.Padding(2);
             this.ConfermaDelete.Name = "ConfermaDelete";
             this.ConfermaDelete.Size = new System.Drawing.Size(142, 50);
             this.ConfermaDelete.TabIndex = 11;
@@ -149,7 +151,7 @@
             // USCITA
             // 
             this.USCITA.Location = new System.Drawing.Point(284, 432);
-            this.USCITA.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.USCITA.Margin = new System.Windows.Forms.Padding(2);
             this.USCITA.Name = "USCITA";
             this.USCITA.Size = new System.Drawing.Size(142, 50);
             this.USCITA.TabIndex = 12;
@@ -157,16 +159,16 @@
             this.USCITA.UseVisualStyleBackColor = true;
             this.USCITA.Click += new System.EventHandler(this.USCITA_Click);
             // 
-            // ORDINAMENTO
+            // Ordinamento
             // 
-            this.ORDINAMENTO.Location = new System.Drawing.Point(804, 88);
-            this.ORDINAMENTO.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.ORDINAMENTO.Name = "ORDINAMENTO";
-            this.ORDINAMENTO.Size = new System.Drawing.Size(142, 50);
-            this.ORDINAMENTO.TabIndex = 13;
-            this.ORDINAMENTO.Text = "Ordinamento Alfabetico";
-            this.ORDINAMENTO.UseVisualStyleBackColor = true;
-            this.ORDINAMENTO.Click += new System.EventHandler(this.ORDINAMENTO_Click);
+            this.Ordinamento.Location = new System.Drawing.Point(804, 88);
+            this.Ordinamento.Margin = new System.Windows.Forms.Padding(2);
+            this.Ordinamento.Name = "Ordinamento";
+            this.Ordinamento.Size = new System.Drawing.Size(142, 50);
+            this.Ordinamento.TabIndex = 13;
+            this.Ordinamento.Text = "Ordinamento Alfabetico";
+            this.Ordinamento.UseVisualStyleBackColor = true;
+            this.Ordinamento.Click += new System.EventHandler(this.ORDINAMENTO_Click);
             // 
             // Somma
             // 
@@ -201,15 +203,39 @@
             this.PrezzoMassimo.UseVisualStyleBackColor = true;
             this.PrezzoMassimo.Click += new System.EventHandler(this.PrezzoMassimo_Click);
             // 
+            // Salva
+            // 
+            this.Salva.Location = new System.Drawing.Point(804, 361);
+            this.Salva.Margin = new System.Windows.Forms.Padding(2);
+            this.Salva.Name = "Salva";
+            this.Salva.Size = new System.Drawing.Size(142, 50);
+            this.Salva.TabIndex = 17;
+            this.Salva.Text = "Salva su File";
+            this.Salva.UseVisualStyleBackColor = true;
+            this.Salva.Click += new System.EventHandler(this.Salva_Click);
+            // 
+            // Leggi
+            // 
+            this.Leggi.Location = new System.Drawing.Point(804, 432);
+            this.Leggi.Margin = new System.Windows.Forms.Padding(2);
+            this.Leggi.Name = "Leggi";
+            this.Leggi.Size = new System.Drawing.Size(142, 50);
+            this.Leggi.TabIndex = 18;
+            this.Leggi.Text = "Leggi da File";
+            this.Leggi.UseVisualStyleBackColor = true;
+            this.Leggi.Click += new System.EventHandler(this.Leggi_Click);
+            // 
             // CRUD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1028, 569);
+            this.Controls.Add(this.Leggi);
+            this.Controls.Add(this.Salva);
             this.Controls.Add(this.PrezzoMassimo);
             this.Controls.Add(this.PrezzoMin);
             this.Controls.Add(this.Somma);
-            this.Controls.Add(this.ORDINAMENTO);
+            this.Controls.Add(this.Ordinamento);
             this.Controls.Add(this.USCITA);
             this.Controls.Add(this.ConfermaDelete);
             this.Controls.Add(this.ConfermaUpdate);
@@ -221,7 +247,7 @@
             this.Controls.Add(this.UPDATE);
             this.Controls.Add(this.DELETE);
             this.Controls.Add(this.CREATE);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CRUD";
             this.Text = "CRUD";
             this.Load += new System.EventHandler(this.CRUD_Load);
@@ -242,10 +268,12 @@
         private System.Windows.Forms.Button ConfermaUpdate;
         private System.Windows.Forms.Button ConfermaDelete;
         private System.Windows.Forms.Button USCITA;
-        private System.Windows.Forms.Button ORDINAMENTO;
+        private System.Windows.Forms.Button Ordinamento;
         private System.Windows.Forms.Button Somma;
         private System.Windows.Forms.Button PrezzoMin;
         private System.Windows.Forms.Button PrezzoMassimo;
+        private System.Windows.Forms.Button Salva;
+        private System.Windows.Forms.Button Leggi;
     }
 }
 
