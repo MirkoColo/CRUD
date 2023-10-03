@@ -218,6 +218,7 @@ namespace CRUD
             }
         }
 
+
         public float SommaPrezzi(Prodotto[] p)
         {
             float somma = 0;
