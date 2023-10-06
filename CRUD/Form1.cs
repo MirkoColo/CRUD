@@ -50,26 +50,50 @@ namespace CRUD
 
         private void CREATE_Click(object sender, EventArgs e)
         {
-            Array.Resize(ref p, p.Length + 1);
-            p[dim].nome = NOME.Text;
-            p[dim].prezzo = float.Parse(PREZZO.Text);
-            dim++;
-            //MessageBox.Show($"Il prodotto {NOME.Text} al prezzo di {PREZZO.Text} euro è stato aggiunto al carrello");
-            NOME.Text = "";
-            PREZZO.Text = "";
-            AggiornaLista();
-            LISTA.Visible = true;
-            UPDATE.Visible = true;
-            DELETE.Visible = true;
-            Ordinamento.Visible = true;
-            Somma.Visible = true;
-            PrezzoMin.Visible = true;
-            PrezzoMassimo.Visible = true;
-            Salva.Visible = true;
-            SommaPercentuale.Visible = true;
-            SottraiPercentuale.Visible = true;
+            bool controllo = ControlloInserimento(NOME.Text, PREZZO.Text);
+
+            if (NOME.Text == "" && PREZZO.Text == "")
+            {
+                MessageBox.Show("Inserire il nome e il prezzo del prodotto");
+            }
+            else if (NOME.Text == "")
+            {
+                MessageBox.Show("Inserire il nome del prodotto");
+            }
+            else if (PREZZO.Text == "")
+            {
+                MessageBox.Show("Inserire il prezzo del prodotto");
+            }
+            else if (controllo == true)
+            { 
+                Array.Resize(ref p, p.Length + 1);
+                p[dim].nome = NOME.Text;
+                p[dim].prezzo = float.Parse(PREZZO.Text);
+                dim++;
+                //MessageBox.Show($"Il prodotto {NOME.Text} al prezzo di {PREZZO.Text} euro è stato aggiunto al carrello");
+                NOME.Text = "";
+                PREZZO.Text = "";
+                AggiornaLista();
+                LISTA.Visible = true;
+                UPDATE.Visible = true;
+                DELETE.Visible = true;
+                Ordinamento.Visible = true;
+                Somma.Visible = true;
+                PrezzoMin.Visible = true;
+                PrezzoMassimo.Visible = true;
+                Salva.Visible = true;
+                SommaPercentuale.Visible = true;
+                SottraiPercentuale.Visible = true;
+            }
+            else
+            {
+                MessageBox.Show("Il prodotto non è stato inserito");
+                NOME.Text = "";
+                PREZZO.Text = "";
+            }
         }
 
+        
         
         private void READ_Click(object sender, EventArgs e)
         {
@@ -107,29 +131,36 @@ namespace CRUD
         }
         private void ConfermaUpdate_Click(object sender, EventArgs e)
         {
+            bool controllo = ControlloInserimento(NOME.Text, PREZZO.Text);
             
-            if(NOME.Text == "" && PREZZO.Text == "")
-            {
-                MessageBox.Show("Inserire il nome e il prezzo del nuovo prodotto");
-            }
-            else if(NOME.Text == "")
-            {
-                MessageBox.Show("Inserire il prezzo del nuovo prodotto");
-            }
-            else if (PREZZO.Text == "")
-            {
-                MessageBox.Show("Inserire il nome del nuovo prodotto");
-            }
-            else
-            {
-                int indiceLista = LISTA.SelectedIndex;
-                p[indiceLista].nome = NOME.Text;
-                p[indiceLista].prezzo = float.Parse(PREZZO.Text);
-                AggiornaLista();
-                ConfermaUpdate.Visible = false;
-                NOME.Text = "";
-                PREZZO.Text = "";
-            }      
+                if (NOME.Text == "" && PREZZO.Text == "")
+                {
+                    MessageBox.Show("Inserire il nome e il prezzo del nuovo prodotto");
+                }
+                else if (NOME.Text == "")
+                {
+                    MessageBox.Show("Inserire il nome del nuovo prodotto");
+                }
+                else if (PREZZO.Text == "")
+                {
+                    MessageBox.Show("Inserire il prezzo del nuovo prodotto");
+                }
+                else if(controllo == true)
+                {
+                    int indiceLista = LISTA.SelectedIndex;
+                    p[indiceLista].nome = NOME.Text;
+                    p[indiceLista].prezzo = float.Parse(PREZZO.Text);
+                    AggiornaLista();
+                    ConfermaUpdate.Visible = false;
+                    NOME.Text = "";
+                    PREZZO.Text = "";
+                }
+                else
+                {
+                    MessageBox.Show("Il prodotto non è stato inserito");
+                    NOME.Text = "";
+                    PREZZO.Text = "";
+                }
         }
 
         private void ConfermaDelete_Click(object sender, EventArgs e)
@@ -339,6 +370,8 @@ namespace CRUD
             AggiornaLista();
 
         }
+
+        //GESTIONE INPUT CON VISUAL BASIC
         public int InputPercentuale(Prodotto[] p)
         {
             string message, title, defaultValue;
@@ -346,23 +379,22 @@ namespace CRUD
             bool controllo = false;
             int percentuale2 = 0;
             message = "Inserisci la percentuale";
-
             title = "Percentuale Input";
 
             defaultValue = "";
             do
             {
                 percentuale = Interaction.InputBox(message, title, defaultValue);
-                if ((string)percentuale == "")
-                {
-                    percentuale = defaultValue;
-                    Microsoft.VisualBasic.Interaction.MsgBox("La percentuale non è stata inserita correttamente");
-                }
-                else
+                if ((string)percentuale != "" && percentuale.All(char.IsNumber))
                 {
                     Interaction.MsgBox("La percentuale è stata inserita correttamente");
                     percentuale2 = (int)Convert.ToInt64(percentuale);
                     controllo = true;
+                }
+                else
+                {
+                    percentuale = defaultValue;
+                    Microsoft.VisualBasic.Interaction.MsgBox("La percentuale non è stata inserita correttamente");
                 }
             } while (controllo == false);
             
@@ -370,6 +402,26 @@ namespace CRUD
             return percentuale2;
         }
 
+        //GESTIONE INSERIMENTO DEL NOME E DEL PREZZO DEL PRODOTTO
+        public bool ControlloInserimento(string nome, string prezzo)
+        {
+            bool uscitaNome = false;
+            bool uscitaPrezzo = false;
+            bool uscita = false;
+            if (nome.All(char.IsLetter))
+            {
+                uscitaNome = true;
+            }
+            if (prezzo.All(char.IsNumber))
+            {
+                uscitaPrezzo = true;
+            }
+            if (uscitaPrezzo == true && uscitaNome == true)
+            {
+                uscita = true;
+            }
+            return uscita;
+        }
         static string[] Split(string stringa)
         {
 
