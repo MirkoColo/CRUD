@@ -118,12 +118,13 @@
             // 
             // LISTA
             // 
+            this.LISTA.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LISTA.FormattingEnabled = true;
-            this.LISTA.ItemHeight = 16;
+            this.LISTA.ItemHeight = 31;
             this.LISTA.Location = new System.Drawing.Point(616, 108);
             this.LISTA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LISTA.Name = "LISTA";
-            this.LISTA.Size = new System.Drawing.Size(416, 452);
+            this.LISTA.Size = new System.Drawing.Size(416, 438);
             this.LISTA.TabIndex = 9;
             this.LISTA.SelectedIndexChanged += new System.EventHandler(this.LISTA_SelectedIndexChanged);
             // 

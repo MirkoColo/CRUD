@@ -48,6 +48,7 @@ namespace CRUD
 
         }
 
+        //FUNZIONE AGGIUNGI
         private void CREATE_Click(object sender, EventArgs e)
         {
             bool controllo = ControlloInserimento(NOME.Text, PREZZO.Text);
@@ -279,11 +280,7 @@ namespace CRUD
             }
         }
 
-        public string VisualizzaStringa(Prodotto p)
-        {
-            return $"{p.nome};{p.prezzo}euro";
-        }
-
+        //BUBBLE SORT CON FUNZIONE CompareTo
         public void OrdinamentoAlfabetico()
         {
             for(int i = 0; i < p.Length - 1; i++)
@@ -356,8 +353,7 @@ namespace CRUD
             StreamReader sr = new StreamReader(@"LeggiLista.txt");
             string line = sr.ReadLine();
             while (line != null)
-            {
-                
+            {            
                 string[] rigaSplit = Split(line);
                 Array.Resize(ref p, p.Length + 1);
                 p[dim].nome = rigaSplit[0];
@@ -374,13 +370,14 @@ namespace CRUD
         //GESTIONE INPUT CON VISUAL BASIC
         public int InputPercentuale(Prodotto[] p)
         {
-            string message, title, defaultValue;
+            string message //ISTRUZIONI FORNITE ALL'UTENTE
+                , title, //TITOLO MESSAGGIO
+                defaultValue; //MESSAGGIO DI BASE
             string percentuale;
             bool controllo = false;
             int percentuale2 = 0;
             message = "Inserisci la percentuale";
             title = "Percentuale Input";
-
             defaultValue = "";
             do
             {
@@ -394,7 +391,7 @@ namespace CRUD
                 else
                 {
                     percentuale = defaultValue;
-                    Microsoft.VisualBasic.Interaction.MsgBox("La percentuale non è stata inserita correttamente");
+                    Interaction.MsgBox("La percentuale non è stata inserita correttamente");
                 }
             } while (controllo == false);
             
@@ -405,22 +402,12 @@ namespace CRUD
         //GESTIONE INSERIMENTO DEL NOME E DEL PREZZO DEL PRODOTTO
         public bool ControlloInserimento(string nome, string prezzo)
         {
-            bool uscitaNome = false;
             bool uscitaPrezzo = false;
-            bool uscita = false;
-            if (nome.All(char.IsLetter))
-            {
-                uscitaNome = true;
-            }
             if (prezzo.All(char.IsNumber))
             {
                 uscitaPrezzo = true;
             }
-            if (uscitaPrezzo == true && uscitaNome == true)
-            {
-                uscita = true;
-            }
-            return uscita;
+            return uscitaPrezzo;
         }
         static string[] Split(string stringa)
         {
