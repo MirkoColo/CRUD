@@ -38,7 +38,7 @@ namespace CRUD
             Somma.Enabled = false;
             PrezzoMin.Enabled = false;
             PrezzoMassimo.Enabled  = false;
-            Salva.Enabled = false;
+            Leggi.Enabled = false;
             SommaPercentuale.Enabled = false;
             SottraiPercentuale.Enabled = false;
 
@@ -270,6 +270,7 @@ namespace CRUD
         private void Salva_Click(object sender, EventArgs e)
         {
             SalvaSuFile();
+            Leggi.Enabled = true;
         }
 
         private void Leggi_Click(object sender, EventArgs e)
@@ -395,6 +396,7 @@ namespace CRUD
             if (line == null)
             {
                 MessageBox.Show("Il file caricato è vuoto");
+                sr.Close();
             }
             else
             {
