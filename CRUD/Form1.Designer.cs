@@ -37,7 +37,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.LISTA = new System.Windows.Forms.ListBox();
             this.ConfermaUpdate = new System.Windows.Forms.Button();
-            this.ConfermaDelete = new System.Windows.Forms.Button();
             this.USCITA = new System.Windows.Forms.Button();
             this.Ordinamento = new System.Windows.Forms.Button();
             this.Somma = new System.Windows.Forms.Button();
@@ -138,17 +137,6 @@
             this.ConfermaUpdate.Text = "Conferma Update";
             this.ConfermaUpdate.UseVisualStyleBackColor = true;
             this.ConfermaUpdate.Click += new System.EventHandler(this.ConfermaUpdate_Click);
-            // 
-            // ConfermaDelete
-            // 
-            this.ConfermaDelete.Location = new System.Drawing.Point(120, 400);
-            this.ConfermaDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ConfermaDelete.Name = "ConfermaDelete";
-            this.ConfermaDelete.Size = new System.Drawing.Size(189, 62);
-            this.ConfermaDelete.TabIndex = 11;
-            this.ConfermaDelete.Text = "Conferma Delete";
-            this.ConfermaDelete.UseVisualStyleBackColor = true;
-            this.ConfermaDelete.Click += new System.EventHandler(this.ConfermaDelete_Click);
             // 
             // USCITA
             // 
@@ -263,7 +251,6 @@
             this.Controls.Add(this.Somma);
             this.Controls.Add(this.Ordinamento);
             this.Controls.Add(this.USCITA);
-            this.Controls.Add(this.ConfermaDelete);
             this.Controls.Add(this.ConfermaUpdate);
             this.Controls.Add(this.LISTA);
             this.Controls.Add(this.label2);
@@ -292,7 +279,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListBox LISTA;
         private System.Windows.Forms.Button ConfermaUpdate;
-        private System.Windows.Forms.Button ConfermaDelete;
         private System.Windows.Forms.Button USCITA;
         private System.Windows.Forms.Button Ordinamento;
         private System.Windows.Forms.Button Somma;

@@ -15,6 +15,7 @@ namespace CRUD
 {
     public partial class CRUD : Form
     {
+        //INIZIALIZZAZIONE VARIABILI
         public struct Prodotto
         {
             public string nome;
@@ -22,24 +23,24 @@ namespace CRUD
         }   
         public Prodotto[] p;
         public int dim;
+        bool Confermadelete = false; 
+        bool Confermaupdate = false;
         public CRUD()
         {
             InitializeComponent();
             dim = 0;
             p = new Prodotto[dim];
 
-            LISTA.Visible = false;
-            UPDATE.Visible = false;
-            DELETE.Visible = false;
-            ConfermaDelete.Visible = false;
-            ConfermaUpdate.Visible = false;
-            Ordinamento.Visible = false;
-            Somma.Visible = false;
-            PrezzoMin.Visible = false;
-            PrezzoMassimo.Visible = false;
-            Salva.Visible = false;
-            SommaPercentuale.Visible = false;
-            SottraiPercentuale.Visible = false;
+            UPDATE.Enabled = false;
+            DELETE.Enabled = false;
+            ConfermaUpdate.Enabled = false;
+            Ordinamento.Enabled = false;
+            Somma.Enabled = false;
+            PrezzoMin.Enabled = false;
+            PrezzoMassimo.Enabled  = false;
+            Salva.Enabled = false;
+            SommaPercentuale.Enabled = false;
+            SottraiPercentuale.Enabled = false;
 
         }
 
@@ -75,16 +76,15 @@ namespace CRUD
                 NOME.Text = "";
                 PREZZO.Text = "";
                 AggiornaLista();
-                LISTA.Visible = true;
-                UPDATE.Visible = true;
-                DELETE.Visible = true;
-                Ordinamento.Visible = true;
-                Somma.Visible = true;
-                PrezzoMin.Visible = true;
-                PrezzoMassimo.Visible = true;
-                Salva.Visible = true;
-                SommaPercentuale.Visible = true;
-                SottraiPercentuale.Visible = true;
+                UPDATE.Enabled = true;
+                DELETE.Enabled = true;
+                Ordinamento.Enabled = true;
+                Somma.Enabled = true;
+                PrezzoMin.Enabled = true;
+                PrezzoMassimo.Enabled = true;
+                Salva.Enabled = true;
+                SommaPercentuale.Enabled = true;
+                SottraiPercentuale.Enabled = true;
             }
             else
             {
@@ -113,7 +113,17 @@ namespace CRUD
         private void UPDATE_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Selezionare il prodotto da cancellare e poi Inserire il nome e il prezzo del nuovo prodotto");
-            ConfermaUpdate.Visible = true;
+            Confermaupdate = true;
+            CREATE.Enabled = false;
+            DELETE.Enabled = false;
+            Ordinamento.Enabled = false;
+            Somma.Enabled = false;
+            PrezzoMin.Enabled = false;
+            PrezzoMassimo.Enabled = false;
+            Salva.Enabled = false;
+            SommaPercentuale.Enabled = false;
+            SottraiPercentuale.Enabled = false;
+            Leggi.Enabled = false;
         }
 
         private void CRUD_Load(object sender, EventArgs e)
@@ -123,13 +133,69 @@ namespace CRUD
 
         private void LISTA_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            //DELETE
+            if (Confermadelete == true)
+            {
+                Confermadelete = false;
+                for (int i = LISTA.SelectedIndex; i < p.Length - 1; i++)
+                {
+                    p[i].nome = p[i + 1].nome;
+                    p[i].prezzo = p[i + 1].prezzo;
+                }
+                Array.Resize(ref p, p.Length - 1);
+                dim--;
+                AggiornaLista();
+                if (dim == 0)
+                {
+                    UPDATE.Enabled = false;
+                    DELETE.Enabled = false;
+                    Ordinamento.Enabled = false;
+                    Somma.Enabled = false;
+                    PrezzoMin.Enabled = false;
+                    PrezzoMassimo.Enabled = false;
+                    Salva.Enabled = false;
+                    SommaPercentuale.Enabled = false;
+                    SottraiPercentuale.Enabled = false;
+                }
+                else
+                {
+                    CREATE.Enabled = true;
+                    UPDATE.Enabled = true;
+                    DELETE.Enabled = true;
+                    Ordinamento.Enabled = true;
+                    Somma.Enabled = true;
+                    PrezzoMin.Enabled = true;
+                    PrezzoMassimo.Enabled = true;
+                    Salva.Enabled = true;
+                    SommaPercentuale.Enabled = true;
+                    SottraiPercentuale.Enabled = true;
+                    Leggi.Enabled = true;
+                }
+            }
+            //UPDATE
+            else if (Confermaupdate == true)
+            {
+                ConfermaUpdate.Enabled = true;
+                UPDATE.Enabled = false;
+            }
         }
+
+       
         private void DELETE_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Selezionare il prodotto da cancellare");
-            ConfermaDelete.Visible = true;
+            Confermadelete = true;
+            UPDATE.Enabled = false;
+            DELETE.Enabled = false;
+            Ordinamento.Enabled = false;
+            Somma.Enabled = false;
+            PrezzoMin.Enabled = false;
+            PrezzoMassimo.Enabled = false;
+            Salva.Enabled = false;
+            SommaPercentuale.Enabled = false;
+            SottraiPercentuale.Enabled = false;
         }
+
         private void ConfermaUpdate_Click(object sender, EventArgs e)
         {
             bool controllo = ControlloInserimento(NOME.Text, PREZZO.Text);
@@ -152,9 +218,20 @@ namespace CRUD
                     p[indiceLista].nome = NOME.Text;
                     p[indiceLista].prezzo = float.Parse(PREZZO.Text);
                     AggiornaLista();
-                    ConfermaUpdate.Visible = false;
+                    ConfermaUpdate.Enabled = false;
                     NOME.Text = "";
                     PREZZO.Text = "";
+                    CREATE.Enabled = true;
+                    UPDATE.Enabled = true;
+                    DELETE.Enabled = true;
+                    Ordinamento.Enabled = true;
+                    Somma.Enabled = true;
+                    PrezzoMin.Enabled = true;
+                    PrezzoMassimo.Enabled = true;
+                    Salva.Enabled = true;
+                    SommaPercentuale.Enabled = true;
+                    SottraiPercentuale.Enabled = true;
+                    Leggi.Enabled = true;
                 }
                 else
                 {
@@ -166,28 +243,7 @@ namespace CRUD
 
         private void ConfermaDelete_Click(object sender, EventArgs e)
         {
-            for (int i = LISTA.SelectedIndex; i < p.Length - 1; i++)
-            {
-                p[i].nome = p[i + 1].nome;
-                p[i].prezzo = p[i + 1].prezzo;
-            }      
-            Array.Resize(ref p, p.Length - 1);
-            dim--;
-            AggiornaLista();
-            ConfermaDelete.Visible = false;
-            if(dim == 0)
-            {
-                LISTA.Visible = false;
-                UPDATE.Visible = false;
-                DELETE.Visible = false;
-                Ordinamento.Visible = false;
-                Somma.Visible = false;
-                PrezzoMin.Visible = false;
-                PrezzoMassimo.Visible = false;
-                Salva.Visible = false;
-                SommaPercentuale.Visible = false;
-                SottraiPercentuale.Visible = false;
-            }
+            
         }
 
         private void ORDINAMENTO_Click(object sender, EventArgs e)
@@ -219,30 +275,20 @@ namespace CRUD
         private void Leggi_Click(object sender, EventArgs e)
         {
             LeggiDaFile();
-            UPDATE.Visible = true;
-            DELETE.Visible = true;
-            Ordinamento.Visible = true;
-            Somma.Visible = true;
-            PrezzoMin.Visible = true;
-            PrezzoMassimo.Visible = true;
-            Salva.Visible = true;
-            SommaPercentuale.Visible = true;
-            SottraiPercentuale.Visible = true;
+            
         }
 
         private void SommaPercentuale_Click(object sender, EventArgs e)
         {
             int percentuale = InputPercentuale(p);
             float[] PrezziScontati = new float[dim];
+            //APPLICO LO SCONTO
             for (int i = 0; i < dim; i++)
             {
                 PrezziScontati[i] = p[i].prezzo + (p[i].prezzo * percentuale / 100);
+                p[i].prezzo = PrezziScontati[i];
             }
-            LISTA.Items.Clear();
-            for (int i = 0; i < dim; i++)
-            {
-                LISTA.Items.Add($"{p[i].nome};{PrezziScontati[i]}euro");
-            }
+            AggiornaLista();
         }
 
         private void SottraiPercentuale_Click(object sender, EventArgs e)
@@ -252,12 +298,9 @@ namespace CRUD
             for (int i = 0; i < dim; i++)
             {
                 PrezziScontati[i] = p[i].prezzo - (p[i].prezzo * percentuale / 100);
+                p[i].prezzo = PrezziScontati[i];
             }
-            LISTA.Items.Clear();
-            for (int i = 0; i < dim; i++)
-            {
-                LISTA.Items.Add($"{p[i].nome};{PrezziScontati[i]}euro");
-            }
+            AggiornaLista();
         }
 
         private void PercentualeVB_Click(object sender, EventArgs e)
@@ -303,7 +346,6 @@ namespace CRUD
         public float SommaPrezzi(Prodotto[] p)
         {
             float somma = 0;
-
             for(int i = 0; i < dim; i++)
             {
                 somma += p[i].prezzo;
@@ -348,23 +390,38 @@ namespace CRUD
 
         public void LeggiDaFile()
         {
-            dim = 0;
-            LISTA.Items.Clear();
-            StreamReader sr = new StreamReader(@"LeggiLista.txt");
+            StreamReader sr = new StreamReader(@"LISTA.txt");
             string line = sr.ReadLine();
-            while (line != null)
-            {            
-                string[] rigaSplit = Split(line);
-                Array.Resize(ref p, p.Length + 1);
-                p[dim].nome = rigaSplit[0];
-                p[dim].prezzo = float.Parse(rigaSplit[1]);
-                dim++;
-                line = sr.ReadLine();
+            if (line == null)
+            {
+                MessageBox.Show("Il file caricato è vuoto");
             }
-            sr.Close();
-            LISTA.Visible = true;
-            AggiornaLista();
-
+            else
+            {
+                dim = 0;
+         
+                while (line != null)
+                {
+                    string[] rigaSplit = Split(line);
+                    Array.Resize(ref p, p.Length + 1);
+                    p[dim].nome = rigaSplit[0];
+                    p[dim].prezzo = float.Parse(rigaSplit[1]);
+                    dim++;
+                    line = sr.ReadLine();
+                }
+                sr.Close();
+                LISTA.Visible = true;
+                AggiornaLista();
+                UPDATE.Enabled = true;
+                DELETE.Enabled = true;
+                Ordinamento.Enabled = true;
+                Somma.Enabled = true;
+                PrezzoMin.Enabled = true;
+                PrezzoMassimo.Enabled = true;
+                Salva.Enabled = true;
+                SommaPercentuale.Enabled = true;
+                SottraiPercentuale.Enabled = true;
+            }
         }
 
         //GESTIONE INPUT CON VISUAL BASIC
@@ -382,12 +439,16 @@ namespace CRUD
             do
             {
                 percentuale = Interaction.InputBox(message, title, defaultValue);
-                if ((string)percentuale != "" && percentuale.All(char.IsNumber))
+                if ((string)percentuale == "")
+                {
+                    controllo = true;
+                }
+                else if ((string)percentuale != "" && percentuale.All(char.IsNumber))
                 {
                     Interaction.MsgBox("La percentuale è stata inserita correttamente");
                     percentuale2 = (int)Convert.ToInt64(percentuale);
                     controllo = true;
-                }
+                }           
                 else
                 {
                     percentuale = defaultValue;
