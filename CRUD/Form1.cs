@@ -169,7 +169,6 @@ namespace CRUD
                     Salva.Enabled = true;
                     SommaPercentuale.Enabled = true;
                     SottraiPercentuale.Enabled = true;
-                    Leggi.Enabled = true;
                 }
             }
             //UPDATE
@@ -231,7 +230,6 @@ namespace CRUD
                     Salva.Enabled = true;
                     SommaPercentuale.Enabled = true;
                     SottraiPercentuale.Enabled = true;
-                    Leggi.Enabled = true;
                 }
                 else
                 {
@@ -327,9 +325,9 @@ namespace CRUD
         //BUBBLE SORT CON FUNZIONE CompareTo
         public void OrdinamentoAlfabetico()
         {
-            for(int i = 0; i < p.Length - 1; i++)
+            for(int i = 0; i < dim - 1; i++)
             {
-                for(int j = i + 1; j < p.Length; j++)
+                for(int j = i + 1; j < dim; j++)
                 {
                     if (p[i].nome.CompareTo(p[j].nome) > 0)
                     {
